@@ -6,12 +6,11 @@ import random
 import pandas as pd
 import sys
 
-
-if len(sys.argv) < 2:
+print("The NEW and IMPROVED Random cadet selector 2.0!")
+fn = input('Type file name:  ')
+if len(fn) == 0:
     print("Need list file name as argument! Terminating...")
     sys.exit()
-
-fn = sys.argv[1]
 
 try:
     name_df = pd.read_excel(fn, header=None)
@@ -24,7 +23,6 @@ if len(name_list) == 0:
     print("Empty list! Terminating...")
     sys.exit()
 
-print("The NEW and IMPROVED Random cadet selector 2.0!")
 x = input('Press q to quit, any other to select a cadet: ')
 while x != 'q':
     picked_num = random.randint(0, len(name_list) - 1)

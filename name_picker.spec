@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['name_picker.py'],
-             pathex=['D:\\Pycharm_Projects\\Name_Picker'],
+             pathex=['C:\\Users\\david.niblick\\PycharmProjects\\Name_Picker'],
              binaries=[],
              datas=[],
              hiddenimports=[],
