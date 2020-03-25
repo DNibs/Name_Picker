@@ -3,25 +3,32 @@
     Then in the console, type Pyinstaller --onefile draft_order.py
 """
 import random
+import pandas as pd
+import sys
 
-# name_array = ['andrew.bowlus', 'eric.celaya', 'justin.deopaul', 'john.donges', 'charlton.epperson', 'jonathan.filer',
-#               'rylie.fry', 'bascome.hollingsworth', 'brandon.johnson', 'jordan.lawson', 'colleen.mcdermott',
-#               'zachery.mcgraw', 'jack.nouss', 'brian.rudolph', 'grayson.seidel', 'jacob.spangler', 'hadiyah.underwood',
-#               'david.witt']
 
-# name_array = ['james.baglino', 'ryer.barnes', 'mikayla.bergin', 'lauren.bredenburg', 'connor.cerda', 'brandon.collie',
-#               'benjamin.foster', 'trevor.hallock', 'kotok.nicholas', 'brian.lujan', 'ryan.murphy2', 'edriece.patterson',
-#               'joseph.rhee', 'alyse.schnurr', 'robert.sewell', 'ryan.sullivan2', 'william.webber']
+if len(sys.argv) < 2:
+    print("Need list file name as argument! Terminating...")
+    sys.exit()
 
-name_array = ['john.boyer', 'brandi.braggs', 'eleanor.burnett', 'gurjiwan.chahal', 'anthony.corey', 'joseph.cotton',
-              'christopher.dao', 'grace.echevarria', 'johnathan.jones', 'elias.mitchell', 'henry.perry', 'samuel.preul',
-              'ryan.roop', 'gerrit.rummel', 'cassidy.shrope', 'evan.taber', 'parker.woodworth']
+fn = sys.argv[1]
 
-print("Random cadet selector!")
+try:
+    name_df = pd.read_excel(fn, header=None)
+except:
+    print("File not found! Terminating...")
+    sys.exit()
+name_list = name_df.values.tolist()
+
+if len(name_list) == 0:
+    print("Empty list! Terminating...")
+    sys.exit()
+
+print("The NEW and IMPROVED Random cadet selector 2.0!")
 x = input('Press q to quit, any other to select a cadet: ')
-while x is not 'q':
-    picked_num = random.randint(0, len(name_array) - 1)
+while x != 'q':
+    picked_num = random.randint(0, len(name_list) - 1)
     print('And the lucky cadet is...')
-    print(name_array[picked_num])
+    print(name_list[picked_num][0])
     print('')
     x = input('Press q to quit, any other to select a cadet: ')
